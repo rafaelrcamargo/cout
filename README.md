@@ -5,15 +5,15 @@ A fast and memory-safe stdout colorizer for a general DX better experience.
 ## Build
 
 ```bash
-$ cargo build
+cargo build
 ```
 
 ## Usage
 
 ```bash
-$ ls -la | cout
-$ nmap google.com | cout
-$ wpscan google.com/wp-login.php | cout
+ls -la | cout
+nmap google.com | cout
+wpscan google.com/wp-login.php | cout
 ```
 
 ## License
