@@ -32,11 +32,11 @@ wpscan google.com/wp-login.php | cout
   <h2>Examples</h2>
   <p>Here are some examples of cout usage:</p>
 
-  <h3>- - - - - - Ping - - - - - -</h3>
+  <h3>- - - Ping - - -</h3>
   <img src="assets/ping.png" width="49%" alt="ping">
   <img src="assets/ping_cout.png" width="49%" alt="ping colored">
 
-  <h3>- - - - - - Nmap - - - - - -</h3>
+  <h3>- - - Nmap - - -</h3>
   <img src="assets/nmap.png" width="49%" alt="nmap">
   <img src="assets/nmap_cout.png" width="49%" alt="nmap colored">
 </div>
