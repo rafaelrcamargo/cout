@@ -2,6 +2,10 @@
   <img src="assets/banner.png" alt="logo">
   <h1>🎨 COUT - Colored Output</h1>
   <p>A fast and memory-safe stdout colorizer for a general DX better experience.</p>
+  <img alt="GitHub" src="https://img.shields.io/github/license/rafaelrcamargo/cout?color=blue">
+  <img alt="GitHub tag (latest SemVer)" src="https://img.shields.io/github/v/tag/rafaelrcamargo/cout?color=yellow&label=version">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rafaelrcamargo/cout?color=limegreen">
+
 </div>
 
 <h2>⚙️ Build</h2>
