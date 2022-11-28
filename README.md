@@ -12,7 +12,7 @@
 cargo build --release
 ```
 
-<p>After the build, the binary will be located in <b>target/release/cout</b>. And for a easier use, you can add the binary to your <b>PATH</b> environment variable.</p>
+<p>After the build, the binary will be located in <code>target/release/cout</code>. And for a easier use, you can add the binary to your <b>PATH</b> environment variable.</p>
 
 ```bash
 export PATH=$PATH:$(pwd)/target/release/cout
@@ -59,7 +59,7 @@ patterns = [
 
 <div align="center">
   <h2>📋 Examples</h2>
-  <p>Here are some examples of cout usage:</p>
+  <p>Here are some usages of <code>cout</code>:</p>
 
   <h3>📥 Ping 📤</h3>
   <img src="assets/ping.png" width="49%" alt="ping">
