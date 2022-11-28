@@ -1,93 +1,40 @@
 //! This tool is used to colorize the output of the stdin stream.
 //! Tokens are colored according to their type, and then streamed back to stdout.
 
-use colored::{Color, Colorize}; // Coloring terminal.
-use regex::Regex; // Regex matching.
+use clap::{arg, command}; // Argument parsing.
+use colored::Colorize; // Coloring terminal.
+use regex::Regex;
 
 use std::io; // Std lib.
 
+mod profiles;
+use profiles::{get_profile, Profile};
+
 /// Main - Reads from stdin and writes to stdout
 fn main() {
+    let matches = command!()
+        .arg(
+            arg!(<PROFILE>)
+                .required(false)
+                .help("Pattern highlighting profile to use."),
+        )
+        .get_matches();
+
+    let profile: Profile = match matches.get_one::<String>("PROFILE") {
+        Some(profile) => get_profile(profile),
+        None => get_profile("default"),
+    };
+
     let lines = io::stdin().lines();
     for line in lines {
-        let mut line = line.unwrap();
-        let tokens = [
-            (
-                // URLS.
-                r"(https?://|www.)[^\s][^\)|\s]+",
-                Color::BrightBlue,
-            ),
-            (
-                // -
-                r"-+",
-                Color::Black,
-            ),
-            (
-                // Dates
-                r"[0-9]?[0-9]/([1][0-2])?[1-9]?/[0-9]?[0-9][0-9][0-9]",
-                Color::Yellow,
-            ),
-            (
-                // MS for timing. :)
-                r"[^0-9a-zA-Z=:]?ms\.?",
-                Color::Cyan,
-            ),
-            (
-                // All error messages and variants.
-                r"\b(?:error|Error|ERROR|Err|ERR|err)\b",
-                Color::Red,
-            ),
-            (
-                // All warn messages and variants.
-                r"\b(?:warn|Warn|WARN|Warning|WARNING|warning)\b",
-                Color::Yellow,
-            ),
-            (
-                // All info messages and variants.
-                r"\b(?:info|Info|INFO|Information|INFORMATION|information)\b",
-                Color::Green,
-            ),
-            (
-                // All debug messages and variants.
-                r"\b(?:debug|Debug|DEBUG|Debugging|DEBUGGING|debugging)\b",
-                Color::Blue,
-            ),
-            (
-                // All full CAPS words.
-                r"\b[A-Z_][A-Z_]*\b",
-                Color::Yellow,
-            ),
-            (
-                // Color everything inside of quotes.
-                r#"["|'][^"|']*["|']"#,
-                Color::Yellow,
-            ),
-            /* (
-                // All numbers.
-                r"[0-9][0-9a-f]*:?:*:?",
-                Color::Magenta,
-            ), */
-            (
-                // Color everything inside of brackets.
-                r"\[[^\]]*\]",
-                Color::BrightCyan,
-            ),
-            (
-                // Color everything inside of braces.
-                r"\{[^\}]*\}",
-                Color::BrightMagenta,
-            ),
-            (
-                // Color everything inside of braces.
-                r".{2,}:[\n| ]",
-                Color::Green,
-            ),
-        ];
-        for token in tokens.iter() {
-            let re = Regex::new(token.0).unwrap();
+        let mut line = line.expect("Failed to read line.");
+        for pattern in &profile.patterns {
+            let re = Regex::new(&pattern[0]).expect("Failed to parse regex.");
             line = re
                 .replace_all(&line, |caps: &regex::Captures| {
-                    caps[0].color(token.1).to_string()
+                    caps[0]
+                        .color(pattern.get(1).expect("Failed to get color.").to_string())
+                        .to_string()
                 })
                 .to_string();
         }
