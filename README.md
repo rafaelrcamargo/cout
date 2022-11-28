@@ -30,8 +30,8 @@ nmap google.com | cout nmap # Use a custom profile
 
 <h2>📝 Profiles</h2>
 
-<p>`cout` has a `default` built-in profile and a `info` example of a custom profile which can be used as a template for your own custom profiles.</p>
-<p>The profiles are located in the `config` directory of your OS, for example:</p>
+<p><code>cout</code> has a <code>default</code> built-in profile and a <code>info</code> example of a custom profile which can be used as a template for your own custom profiles.</p>
+<p>The profiles are located in the <code>config</code> directory of your OS, for example:</p>
 
 ```bash
 # 🐧 Linux
