@@ -3,8 +3,11 @@ edition = "2021"
 name = "cout"
 version = "0.1.0"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+clap = {version = "4.0.27", features = ["cargo"]}
 colored = "2.0.0"
+dirs = "4.0.0"
 regex = "1.7.0"
+serde = "1.0.148"
+serde_derive = "1.0.148"
+toml = "0.5.9"
